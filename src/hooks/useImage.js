@@ -7,9 +7,6 @@ export const useImage = () => {
     fetch('https://jsonplaceholder.typicode.com/photos')
       .then((response) => response.json())
       .then((json) => setImage(json));
-
-
-    console.log('useImage');
   }, []);
 
   return {
