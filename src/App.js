@@ -32,12 +32,14 @@ const App = () => {
   }
 
   const updateMoveable = (id, newComponent, updateEnd = false, parent) => {
+    console.log(moveableComponents)
     const updatedMoveables = moveableComponents.map((moveable, i) => {
       // Components should not drop out of div with id "parent" when dragging
       if (parent) {
         let parentBounds = parent?.getBoundingClientRect();
         
         if (moveable.id === id) {
+          console.log(moveable)
           let newLeft = newComponent.left;
           let newTop = newComponent.top;
           if (newLeft < 0) {
@@ -53,6 +55,10 @@ const App = () => {
             newTop = parentBounds.height - moveable.height;
           }
           return { id, ...newComponent, top: newTop, left: newLeft, updateEnd };
+        }
+      } else {
+        if (moveable.id === id) {
+          return { id, ...newComponent, updateEnd };
         }
       }
       return moveable;
